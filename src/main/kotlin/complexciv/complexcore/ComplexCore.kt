@@ -11,33 +11,31 @@ import org.spongepowered.api.event.Listener
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent
 import org.spongepowered.api.plugin.Plugin
-
 import java.io.File
 import java.io.IOException
-import java.util.Collections
 
 @Plugin(id = PomData.ARTIFACT_ID, name = PomData.NAME, version = PomData.VERSION)
 class SpongeCassandra {
 
     @Inject
-    private val logger: Logger? = null
+    lateinit private var logger: Logger
 
     @Inject
     @DefaultConfig(sharedRoot = true)
-    private val defaultConfig: File? = null
+    lateinit private var defaultConfig: File
 
     @Inject
     @DefaultConfig(sharedRoot = true)
-    private val configLoader: ConfigurationLoader<CommentedConfigurationNode>? = null
+    lateinit private var configLoader: ConfigurationLoader<CommentedConfigurationNode>
 
-    private var config: ConfigurationNode? = null
+    lateinit private var config: ConfigurationNode
 
     @Inject
-    private val game: Game? = null
+    lateinit private var game: Game
 
     @Listener
     fun onPreInit(event: GamePreInitializationEvent) {
-
+        initConfig()
     }
 
     @Listener
@@ -47,15 +45,14 @@ class SpongeCassandra {
 
     private fun initConfig() {
         try {
-            config = configLoader!!.load()
+            config = configLoader.load()
 
-            if (!defaultConfig!!.exists()) {
-//                config!!.getNode("cassandra", "contact-points").setValue(listOf<T>("localhost"))
-//                config!!.getNode("cassandra", "port").setValue(9042)
-                configLoader!!.save(config)
+            if (!defaultConfig.exists()) {
+                //TODO: Config Options if we need them I guess
+                configLoader.save(config)
             }
         } catch (e: IOException) {
-            logger!!.warn("Main config could not be loaded/created/changed!")
+            logger.warn("Main config could not be loaded/created/changed!")
         }
 
     }
