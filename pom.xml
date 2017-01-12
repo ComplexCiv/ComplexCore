@@ -13,6 +13,7 @@
         <githubUser>ComplexCiv</githubUser>
         <githubRepo>ComplexCore</githubRepo>
         <githubProject>${githubUser}/${githubRepo}</githubProject>
+        <kotlin.version>1.0.6</kotlin.version>
     </properties>
 
     <url>https://${githubUser}.github.io/${githubRepo}</url>
@@ -71,6 +72,17 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -124,6 +136,7 @@
     </profiles>
 
     <build>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
         <resources>
             <resource>
                 <directory>${project.basedir}/src/main/resources</directory>
@@ -153,7 +166,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-
+                                    <include>org.jetbrains.kotlin:kotlin-stdlib</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
@@ -183,6 +196,27 @@
                     <goals>install deploy</goals> <!-- install is here to fix javadoc generation in multi-module projects -->
                     <releaseProfiles>release</releaseProfiles>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
