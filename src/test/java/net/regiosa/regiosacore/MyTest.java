@@ -1,4 +1,4 @@
-package complexciv.complexcore;
+package net.regiosa.regiosacore;
 
 import org.junit.Test;
 

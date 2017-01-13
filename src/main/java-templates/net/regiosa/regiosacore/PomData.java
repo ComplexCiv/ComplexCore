@@ -1,4 +1,4 @@
-package complexciv.complexcore;
+package net.regiosa.regiosacore;
 
 class PomData {
     public static final String ARTIFACT_ID = "${project.artifactId}";

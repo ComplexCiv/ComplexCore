@@ -1,4 +1,4 @@
-package complexciv.complexcore
+package net.regiosa.regiosacore
 
 import com.google.inject.Inject
 import ninja.leaping.configurate.ConfigurationNode
