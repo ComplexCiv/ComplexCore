@@ -31,13 +31,13 @@
 
     <distributionManagement>
         <repository>
-            <id>complexcraft-releases</id>
-            <name>Complexcraft releases</name>
+            <id>regiosa-releases</id>
+            <name>Regiosa releases</name>
             <url>http://198.199.64.232:8081/artifactory/libs-release-local/</url>
         </repository>
         <snapshotRepository>
-            <id>complexcraft-snapshots</id>
-            <name>Complexcraft snapshots</name>
+            <id>regiosa-snapshots</id>
+            <name>Regiosa snapshots</name>
             <url>http://198.199.64.232:8081/artifactory/libs-snapshot-local/</url>
         </snapshotRepository>
     </distributionManagement>
